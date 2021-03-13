@@ -1,0 +1,1 @@
+{"version":3,"file":"process-worker.d.ts","sourceRoot":"","sources":["../../source/core/process-worker.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,mBAAmB,CAAA;AAG5C,qBAAa,aAAa;WACT,QAAQ,CAAC,KAAK,CAAC,EAAE,QAAQ;IAItC,MAAM,CAAC,UAAU,CAAC,OAAO,EAAE,GAAG;CAGjC"}

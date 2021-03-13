@@ -1,0 +1,1 @@
+{"version":3,"file":"__interface.d.ts","sourceRoot":"","sources":["../../../source/redis/scripts/__interface.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,YAAY;IACzB,IAAI,EAAE,MAAM,CAAA;IACZ,KAAK,EAAE,MAAM,CAAA;IACb,aAAa,EAAE,MAAM,CAAA;IACrB,UAAU,EAAE,MAAM,CAAA;IAClB,SAAS,EAAE,MAAM,CAAA;CACpB;AACD,MAAM,WAAW,aAAa;IAC1B,IAAI,EAAE,MAAM,CAAA;IACZ,MAAM,EAAE,MAAM,CAAA;CACjB"}
