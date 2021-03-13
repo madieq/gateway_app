@@ -3,7 +3,8 @@ import { ResponseFactory } from '../../core/response-worker'
 import * as sha256 from 'sha256'
 import * as EmailValidator from 'email-validator'
 import User from '../../core/User'
-import { auth } from '../../redis/scripts/auth'
+import { auth } from '../../mongo/scripts/auth'
+import { Util } from '../../core/util'
 
 export class Execute {
     init() {
@@ -23,8 +24,9 @@ export class Execute {
                 throw ResponseFactory.create('INVALID_TYPE', 'invalid email')
 
             let hashOfCredentials = sha256.x2(state.input.login + state.input.pass)
-            let hashOfEmail = sha256.default(state.input.email)
-            let rOut = await auth.registerUser(hashOfEmail, hashOfCredentials, new User(state.input.login, ['user']))
+            let randomUserSecret = await Util.randomstring(20)
+            let user = new User(state.input.login, ['user'], state.input.email, hashOfCredentials, randomUserSecret)
+            let rOut = await auth.registerUser(user)
 
             state.out = ResponseFactory.create('OK', { result: rOut })
         }

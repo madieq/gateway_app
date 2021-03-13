@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
 const app_1 = require("../../app");
+const response_worker_1 = require("../../core/response-worker");
 const User_1 = __importDefault(require("../../core/User"));
 const util_1 = require("../../core/util");
 const __common_1 = require("./__common");
@@ -18,15 +19,16 @@ exports.auth = {
         return luaRes;
     },
     async getUserByLoginPass(login = '', hashed_pass = '') {
-        // let tObj: any
-        // try {
-        //     tObj = await common.hgetall(`user_credentials:${login}_${hashed_pass}`)
-        // } catch (error) {
-        //     throw ResponseFactory.create('AUTHORIZE', 'invalid login or password')
-        // }
-        // let u = await common.hgetall(`users:${tObj.user}`)
-        // let user = new User().assign(u)
-        // return user
+        let tObj;
+        try {
+            tObj = await __common_1.common.hgetall(`user_credentials:${login}_${hashed_pass}`);
+        }
+        catch (error) {
+            throw response_worker_1.ResponseFactory.create('AUTHORIZE', 'invalid login or password');
+        }
+        let u = await __common_1.common.hgetall(`users:${tObj.user}`);
+        let user = new User_1.default().assign(u);
+        return user;
     },
     async getUserContext(userName) {
         let user = await app_1.App.redis.lua('_hgetall', 'users:' + userName);

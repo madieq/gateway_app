@@ -3,6 +3,7 @@ import { ResponseFactory } from '../../core/response-worker'
 import { auth } from '../../redis/scripts/auth'
 import sha256 from 'sha256'
 import User from '../../core/User'
+import * as jwt from 'jsonwebtoken'
 
 export class Execute {
     init() {

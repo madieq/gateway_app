@@ -4,6 +4,7 @@ import { Response, ResponseFactory, ResponseCode } from './../core/response-work
 import User from './../core/User'
 import * as fse from 'fs-extra'
 import { ACCESS_NAMES } from '../core/security'
+import * as jwt from 'jsonwebtoken'
 
 export class RouteState {
     path = '*'
@@ -35,6 +36,8 @@ export class Router {
             // -- GET CONTEXT BY TOKEN
             let authToken = ((req.headers || {}).authorization || '').replace(/Bearer /g, '');
             (req as any).user = new User
+
+            //validate user
             // (req as any).user = await Auth.getUserByToken(authToken)
             next()
         })

@@ -1,1 +1,1 @@
-{"version":3,"file":"http.authorize.d.ts","sourceRoot":"","sources":["../../../source/api/routes/http.authorize.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAc,MAAM,gBAAgB,CAAA;AAMzD,qBAAa,OAAO;IAChB,IAAI;CAUP"}
+{"version":3,"file":"http.authorize.d.ts","sourceRoot":"","sources":["../../../source/api/routes/http.authorize.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAc,MAAM,gBAAgB,CAAA;AAOzD,qBAAa,OAAO;IAChB,IAAI;CAUP"}

@@ -8,16 +8,18 @@ import { RedisClient } from './redis'
 import { auth } from './redis/scripts/auth'
 import User from './core/User'
 import UserFactory from './core/UserFactory'
+import { MongoClient } from './mongo'
 
 async function main() {
     // init
     ProcessWorker.loadConfig(config)
 
-    App.redis = await new RedisClient().connect()
+    // App.redis = await new RedisClient().connect()
+    App.mongo = await new MongoClient().connect()
     App.http = await new Router().connect()
 
-    await auth.saveUserContext(UserFactory.create('guest'))
-    await auth.saveUserContext(UserFactory.create('admin'))
+    // await auth.saveUserContext(UserFactory.create('guest'))
+    // await auth.saveUserContext(UserFactory.create('admin'))
     if (false) { // -- auth test
         let uc = await auth.getUserContext('admin')
         let a = await auth.createTokenForUser(uc)

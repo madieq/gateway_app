@@ -28,7 +28,8 @@ const response_worker_1 = require("../../core/response-worker");
 const sha256 = __importStar(require("sha256"));
 const EmailValidator = __importStar(require("email-validator"));
 const User_1 = __importDefault(require("../../core/User"));
-const auth_1 = require("../../redis/scripts/auth");
+const auth_1 = require("../../mongo/scripts/auth");
+const util_1 = require("../../core/util");
 class Execute {
     init() {
         let routeOption = new http_worker_1.RouteOptions;
@@ -46,8 +47,9 @@ class Execute {
             if (!EmailValidator.validate(input.email))
                 throw response_worker_1.ResponseFactory.create('INVALID_TYPE', 'invalid email');
             let hashOfCredentials = sha256.x2(state.input.login + state.input.pass);
-            let hashOfEmail = sha256.default(state.input.email);
-            let rOut = await auth_1.auth.registerUser(hashOfEmail, hashOfCredentials, new User_1.default(state.input.login, ['user']));
+            let randomUserSecret = await util_1.Util.randomstring(20);
+            let user = new User_1.default(state.input.login, ['user'], state.input.email, hashOfCredentials, randomUserSecret);
+            let rOut = await auth_1.auth.registerUser(user);
             state.out = response_worker_1.ResponseFactory.create('OK', { result: rOut });
         };
         return routeOption;

@@ -6,6 +6,8 @@ declare class Config {
     REDIS_PREFIX: string;
     REDIS_URI: string;
     TOKEN_EXPIRE_SEC: string;
+    AUTH_SECRET: string;
+    MONGO_URI_FULL: string;
 }
 export declare let config: Config;
 export {};

@@ -60,6 +60,7 @@ class Router {
             // -- GET CONTEXT BY TOKEN
             let authToken = ((req.headers || {}).authorization || '').replace(/Bearer /g, '');
             req.user = new User_1.default;
+            //validate user
             // (req as any).user = await Auth.getUserByToken(authToken)
             next();
         });
